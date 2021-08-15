@@ -2,6 +2,7 @@ FROM osrf/ros:noetic-desktop-full
 
 USER root
 RUN apt-get update && apt install -y python3-pip python3-catkin-tools ros-noetic-cv-bridge git wget
+RUN apt-get install -y ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3 ros-noetic-openslam-gmapping ros-noetic-map-server ros-noetic-moveit
 RUN pip3 install pybullet opencv-python osrf-pycommon
 
 ARG UNAME=ros_user
@@ -24,5 +25,6 @@ RUN catkin init
 RUN catkin config --extend /opt/ros/noetic/
 RUN catkin build
 RUN echo "source $WS_DIR/devel/setup.bash" >> /home/$UNAME/.bashrc
+
 
 CMD /bin/bash
